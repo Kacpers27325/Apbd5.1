@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tutorial4.Database;
 using Tutorial4.Models;
-
 namespace Tutorial4.Controllers
 {
     [ApiController]
@@ -9,8 +8,6 @@ namespace Tutorial4.Controllers
     public class AnimalsController : ControllerBase
     {
         private readonly MockDb _animalRepository;
-
-
         public AnimalsController(MockDb animalRepository)
         {
             _animalRepository = animalRepository;

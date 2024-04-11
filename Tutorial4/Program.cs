@@ -1,7 +1,5 @@
-
 using Tutorial4.Database;
 using Tutorial4.Endpoints;
-
 
 var builder = WebApplication.CreateBuilder(args);
 

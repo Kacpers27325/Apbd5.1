@@ -1,7 +1,5 @@
 ﻿using Tutorial4.Models;
-
 namespace Tutorial4.Database;
-
 public class MockDb
 {
     public List<Animal> Animals { get; set; } = new List<Animal>
@@ -9,7 +7,6 @@ public class MockDb
         new Animal { Id = 1, FirstName = "Burek", Category = "Dog", Weight = 15.5, FurColor = "Brown" },
         new Animal { Id = 2, FirstName = "Mruczek", Category = "Cat", Weight = 5.2, FurColor = "Gray" }
     };
-    
     
     // Pobranie wszystkich zwierząt
     public IEnumerable<Animal> GetAll()
@@ -44,7 +41,6 @@ public class MockDb
             existingAnimal.FurColor = animal.FurColor;
         }
     }
-
     // Usunięcie zwierzęcia po Id
     public void DeleteAnimal(int id)
     {
@@ -54,8 +50,4 @@ public class MockDb
             Animals.Remove(animalToRemove);
         }
     }
-    
-    
-    
-    
 }

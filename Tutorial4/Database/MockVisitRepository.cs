@@ -1,7 +1,5 @@
 ﻿using Tutorial4.Models;
-
 namespace  Tutorial4.Database;
-
     public class MockVisitRepository
     {
         public List<Visit> Visits { get; set; } = new List<Visit>
@@ -20,7 +18,6 @@ namespace  Tutorial4.Database;
             }
         };
         
-
         public IEnumerable<Visit> GetVisitsByAnimalId(int animalId)
         {
             return Visits.Where(v => v.Animal.Id == animalId);
@@ -28,7 +25,6 @@ namespace  Tutorial4.Database;
 
         public void AddVisit(Visit visit)
         {
-            // Generowanie unikalnego Id dla wizyty
             int newId = Visits.Count > 0 ? Visits.Max(v => v.Id) + 1 : 1;
             visit.Id = newId;
             Visits.Add(visit);
