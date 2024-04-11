@@ -2,6 +2,7 @@
 using Tutorial4.Database;
 using Tutorial4.Endpoints;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddSingleton<MockDb>();
+builder.Services.AddSingleton<MockVisitRepository>();
 
 var app = builder.Build();
 
@@ -23,6 +25,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapAnimalEndpoints();
+app.MapVisitsEndpoints();
 
 app.MapControllers();
 app.Run();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tutorial4.Database;
 using Tutorial4.Models;
-using Tutorial4.Repositories;
 
 namespace Tutorial4.Controllers
 {
@@ -10,7 +9,7 @@ namespace Tutorial4.Controllers
     public class AnimalsController : ControllerBase
     {
         private readonly MockDb _animalRepository;
-        private readonly MockVisitRepository _visitRepository;
+
 
         public AnimalsController(MockDb animalRepository)
         {
@@ -32,6 +31,7 @@ namespace Tutorial4.Controllers
             {
                 return NotFound();
             }
+
             return Ok(animal);
         }
 
@@ -55,41 +55,5 @@ namespace Tutorial4.Controllers
             _animalRepository.DeleteAnimal(id);
             return NoContent();
         }
-        
-        
-        [HttpGet("{animalId}/visits")]
-        public IActionResult GetVisitsForAnimal(int animalId)
-        {
-            var animal = _animalRepository.GetAnimalById(animalId);
-            if (animal == null)
-            {
-                return NotFound($"Zwierzę o Id {animalId} nie istnieje.");
-            }
-
-            // Pobieramy wizyty dla danego zwierzęcia z repozytorium wizyt
-            var visits = _visitRepository.GetVisitsByAnimalId(animalId);
-
-            return Ok(visits);
-        }
-
-        [HttpPost("{animalId}/visits")]
-        public IActionResult AddVisitForAnimal(int animalId, Visit visit)
-        {
-            var animal = _animalRepository.GetAnimalById(animalId);
-            if (animal == null)
-            {
-                return NotFound($"Zwierzę o Id {animalId} nie istnieje.");
-            }
-
-            // Ustawiamy zwierzę dla nowej wizyty
-            visit.Animal = animal;
-
-            // Dodajemy nową wizytę do repozytorium wizyt
-            _visitRepository.AddVisit(visit);
-
-            return CreatedAtAction(nameof(GetVisitsForAnimal), new { animalId = animalId }, visit);
-        }
-        
-        
     }
 }
